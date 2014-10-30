@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
+\usepackage{hyperref}
+
+
 
 \title{Basic Writing Assistant Tool}
 \author{Patrick Rock, Ben Sitz, Victoria McCloud}
@@ -14,27 +17,38 @@
 \paragraph{}
 Our tool makes writing short summary paragraphs easy. The tool helps you by providing a seed paragraph from Wikipedia about the relevant topic.
 As the user makes changes to the seed paragraph, the similarity to the original is calculated by the tool. The user can continue to make the 
-document their own until it is sufficently unique.
+document their own until it is sufficiently unique. The tool helps you crank out information gathered from the web in your own writing style.
 
 \section{Why would we need such a tool and who would you expect to use it and benefit from it?}
-Summarizing topical information is a common need for students and professionals. 
+\paragraph{}
+Summarizing topical information is a common need for students and professionals alike. It is difficult to 
+rewrite online content in your own words. Our tool will include several functional elements that help transform
+the original text. We want to deliver the following features.
 \begin{itemize}
 \item Generate synonyms of words
-\item Resturcture sentences, anastrophe
-\item Identify similar sentences and suggest a merge
-\item Comupte similarity between edited and original document
+\item Restructure sentences through anastrophe
+\item Identify similar sentences within document and suggest a merge
+\item Crawl related Wiki pages for sentences similar to the document
+\item Compute similarity between edited and original document
 \end{itemize}
 
 \section{Does this kind of tools already exist? If similar tools exist, how is your tool different from them? Would people care about the difference? How hard is it to build such a tool? What is the challenge?}
-There are plagarism detectors available online. These tools are similar to ours, but have a different motiviation. Our tool is designed to help writers
-personalize content that they have found online to their style. 
+\paragraph{}
+There are plagiarism detectors available online. These tools are similar to ours, but have a different motivation. Our tool is designed to help writers
+personalize content that they have found online to their style. The challenge in building the tool is providing a sufficiently rich set of features.
+Each functional element in the tool is small, so they must work well together in order to be useful. 
 
 \section{How do you plan to build it? You should mention the data you will use and the core algorithm that you will implement.}
+We plan to use the \textbf{Wikipedia} API to pull pages related to the writing subject. We are implementing a \textbf{vector space} document
+model to do our similarity comparisons. We will also be implementing very basic \textbf{natural language analysis} to do text manipulation.
 
 \section{What existing resources can you use?}
-We will crawl Wikipedia.
+We can use an existing Wikipedia JavaScript API client hosted here: \url{https://github.com/macbre/nodemw}. We can use 
+the following project to handle tf-idf, stemming, and distance metrics: \url{https://github.com/NaturalNode/natural}. We 
+are considering using the Python Flask micro framework. Our project code lives here: \url{https://github.com/johnprock/470proj}.
 
 \section{How will you demonstrate the usefulness of your tool?}
-
+We will demonstrate our tools usefulness by writing a document about Map Reduce. We will use our tool to help create an 
+original description of the Map Reduce model.
 
 \end{document}
