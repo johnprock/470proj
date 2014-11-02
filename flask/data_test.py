@@ -1,31 +1,24 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+import wikipedia
+
 app = Flask(__name__)
 
-def compute_sim(t1, t2):
+def get_page(t1):
     t1_page = wikipedia.page(t1)
-    t2_page = wikipedia.page(t2)
-
-    t1_content = []
-    t2_content = []
-
-    t1_content = t1_page.content().split()
-    t2_content = t2_page.content().split()
+    t1_content = [] 
+    t1_content = t1_page.content.split()
     t1_final = []
-    t2_final = []
-    x = 0
-    while text_box1[x] != '==':
-        t1_final.append(text_box1[x]) 
-        x+=1
 
     x = 0
-    while text_box2[x] != '==':
-        t2_final.append(text_box2[x]) 
+    while t1_content[x] != '==':
+        t1_final.append(t1_content[x]) 
         x+=1
 
-    t1_final = str(t1_final)
-    t2_final = str(t2_final)
+    return str(t1_final)
+
+def compute_sim(t1, t2):
     return 0
 
 @app.route("/")
