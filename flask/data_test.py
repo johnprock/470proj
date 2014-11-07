@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from collections import Counter
 import wikipedia
+import math
 
 app = Flask(__name__)
 
@@ -28,8 +29,10 @@ def compute_sim(t1, t2): #takes two bodies of strings
     dot_product = sum(c1.get(x, 0) * c2.get(x, 0) for x in terms)
     magnitude1 = math.sqrt(sum(c1.get(x,0)**2 for x in terms))
     magnitude2 = math.sqrt(sum(c2.get(x,0)**2 for x in terms))
-    
-    return dot_product/(magnitude1*magnitude2)
+    mag_product = magnitude1*magnitude2
+    if mag_product == 0:
+        return 0 
+    return dot_product/mag_product
 
 @app.route("/")
 def data_test():
