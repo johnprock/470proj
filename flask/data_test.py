@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from collections import Counter
 import wikipedia
 
 app = Flask(__name__)
@@ -18,8 +19,17 @@ def get_page(t1):
 
     return str(t1_final)
 
-def compute_sim(t1, t2):
-    return 0
+def compute_sim(t1, t2): #takes two bodies of strings
+
+    c1 = Counter(t1.split())
+    c2 = Counter(t2.split())
+
+    terms = set(c1).union(c2)
+    dot_product = sum(c1.get(x, 0) * c2.get(x, 0) for x in terms)
+    magnitude1 = math.sqrt(sum(c1.get(x,0)**2 for x in terms))
+    magnitude2 = math.sqrt(sum(c2.get(x,0)**2 for x in terms))
+    
+    return dot_product/(magnitude1*magnitude2)
 
 @app.route("/")
 def data_test():
