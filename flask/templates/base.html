@@ -1,0 +1,19 @@
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="static/script.js"></script>
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}{% endblock %} - CSCE 470 Project</title>
+    {% endblock %}
+</head>
+<body>
+    <h1>{% block header %}{% endblock %}</h1>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2014 by Patrick Rock.
+        {% endblock %}
+    </div>
+</body>

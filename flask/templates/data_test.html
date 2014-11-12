@@ -1,17 +1,9 @@
-<!doctype html>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-function similarity() {
-    var t1 = $("#topic1").val();    
-    var t2 = $("#topic2").val();    
-
-    window.location.href = "/sim_score.html?t1=" + t1 + "&t2=" + t2 
-}
-</script>
-
-<title>Data Test</title>
-<h1>Data Test</h1>
-
+{% extends "base.html" %}
+{% block title %}Similarity Test{% endblock %}
+{% block header %}
+Similarity Test
+{% endblock %}
+{% block content %}
 <label for="topic1">Topic1:
 <input type="text" name="topic1" id="topic1" /></label>	
 
@@ -19,3 +11,5 @@ function similarity() {
 <input type="text" name="topic2" id="topic2" /></label>
 
 <button id="button" onclick="similarity()">Compute Similarity</button>	
+{% endblock %}
+

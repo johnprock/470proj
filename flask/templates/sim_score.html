@@ -1,8 +1,17 @@
-similarity score!
+{% extends "base.html" %}
 
+{% block title %}
+Similarity Result
+{% endblock %}
+
+{% block header %}
+Similarity Result
+{% endblock %}
+
+{% block content %}
 {% if sim %}
   <h1>Similarity is {{ sim }}!</h1>
 {% else %}
   <h1>Failed to compute similarity</h1>
 {% endif %}
-
+{% endblock %}
