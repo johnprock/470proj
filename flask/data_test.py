@@ -34,6 +34,10 @@ def compute_sim(t1, t2): #takes two bodies of strings
         return 0 
     return dot_product/mag_product
 
+@app.route("/temp")
+def temp():
+    return render_template('index.html')
+
 @app.route("/")
 def data_test():
     return render_template('data_test.html')
