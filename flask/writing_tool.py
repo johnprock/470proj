@@ -16,9 +16,10 @@ def get_page(t1):
 
     x = 0
     while t1_content[x] != '==':
-        t1_final.append(t1_content[x]) 
+        t1_final.append(unicodedata.normalize('NFKD', t1_content[x]).encode('ascii','ignore')) 
         x+=1
 
+    t1_final = ' '.join(t1_final)
     return t1_final
 
 def compute_sim(t1, t2): #takes two bodies of strings
