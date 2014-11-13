@@ -1,8 +1,8 @@
 .mainbox{
     border: 1px solid;
-    border-radius: 25px;
+/*    border-radius: 25px; */
     margin-top: 20px;
     margin-bottom: 20px;
-    min-height: 150px;
+    height: 150px;
     overflow: scroll;
 }

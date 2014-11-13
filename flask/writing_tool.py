@@ -4,6 +4,7 @@ from flask import request
 from collections import Counter
 import wikipedia
 import math
+import unicodedata
 
 app = Flask(__name__)
 
@@ -18,7 +19,7 @@ def get_page(t1):
         t1_final.append(t1_content[x]) 
         x+=1
 
-    return str(t1_final)
+    return t1_final
 
 def compute_sim(t1, t2): #takes two bodies of strings
 
@@ -34,6 +35,7 @@ def compute_sim(t1, t2): #takes two bodies of strings
         return 0 
     return dot_product/mag_product
 
+## ROUTING FUNCTIONS
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -52,11 +54,12 @@ def temp():
 
 @app.route('/')
 def index():
-    return render_template('main.html')
+    topic = request.args.get('topic')
+    text = None
+    if topic:
+      text = get_page(topic)
 
-@app.route('/main')
-def main():
-    return render_template('main.html')
+    return render_template('main.html', topic = text)
 
 @app.route('/sim_score.html')
 def sim_score():
