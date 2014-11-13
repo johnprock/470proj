@@ -9,6 +9,13 @@ function async_similarity() {
 }
 
 function fetch() {
-    var topic = $("#topic").val();
-    window.location.href = "/?topic="+topic;
+    $.getJSON('/fetch', {
+      t: $('#topic').val(),
+    }, function(data) {
+      $("#fetch").text(data.result);
+      $("#edit").text(data.result);
+    });
+      return false;
+//    var topic = $("#topic").val();
+//    window.location.href = "/?topic="+topic;
 }

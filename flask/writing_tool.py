@@ -49,6 +49,14 @@ def similarity():
       sim = 0
     return jsonify(result = sim)
 
+@app.route('/fetch')
+def fetch():
+    t = request.args.get('t')
+    text = ""
+    if t!=None:
+        text = get_page(t)
+    return jsonify(result = text)
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -60,10 +68,6 @@ def contact():
 @app.route('/faq')
 def faq():
     return render_template('faq.html')
-
-@app.route('/temp')
-def temp():
-    return render_template('index.html')
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
