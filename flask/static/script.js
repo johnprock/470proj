@@ -1,7 +1,11 @@
-function similarity() {
-    var t1 = $("#topic1").val();    
-    var t2 = $("#topic2").val();    
-    window.location.href = "/sim_score.html?t1=" + t1 + "&t2=" + t2; 
+function async_similarity() {
+    $.getJSON('/similarity', {
+      t1: $('#fetch').text(),
+      t2: $('#edit').text()
+    }, function(data) {
+      $("#sim_score").text(data.result);
+    });
+      return false;
 }
 
 function fetch() {

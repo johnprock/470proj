@@ -2,23 +2,13 @@
 {% block title %}Writing Tool{% endblock %}
 {% block header %}Writing Tool{% endblock %}
 {% block content %}
-<!-- old shit
-<label for="topic1">Topic1:
-<input type="text" name="topic1" id="topic1" /></label>	
-
-<label for="topic2">Topic2:
-<input type="text" name="topic2" id="topic2" /></label>
-
-<button id="button" onclick="similarity()">Compute Similarity</button>	
--->
-
 <b>Choose a topic</b>
 <input type="text" id="topic"/>
-<button id="button" onclick="fetch()">Get Topic</button>
+<button id="fetch_button" onclick="fetch()">Get Topic</button>
 
 <div class="row">
 <div class="col-md-6">
-  <div class="mainbox">
+  <div class="mainbox" id="fetch">
       {% if topic %}
         {{topic}} 
       {% else %}
@@ -27,8 +17,12 @@
   </div>
 </div>
 <div class="col-md-6">
-  <div class="mainbox">
-    Edit things here
+  <div class="mainbox" id="edit" contenteditable>
+       {% if topic %}
+        {{topic}} 
+      {% else %}
+        edit here
+      {% endif %} 
   </div>
 </div>
 </div>
@@ -42,9 +36,15 @@
 </div>
 <div class="row">
 <div class="col-md-12">
-  <div class="mainbox">
-    Similarity shit
-  </div>
+    <button id="sim_button" onclick="async_similarity()">Compute Similarity</button>
+    <p id="sim_score">
+      no score
+<!--        {% if sim %}
+          {{sim}}
+        {% else %}
+          no score
+        {% endif %}-->
+    </p>
 </div>
 </div>
 

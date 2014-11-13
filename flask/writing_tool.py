@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import jsonify
 from collections import Counter
 import wikipedia
 import math
@@ -37,6 +38,17 @@ def compute_sim(t1, t2): #takes two bodies of strings
     return dot_product/mag_product
 
 ## ROUTING FUNCTIONS
+@app.route('/similarity')
+def similarity():
+    t1 = request.args.get('t1')
+    t2 = request.args.get('t2')
+    sim = None
+    if t1!=None and t2!=None:
+      sim = compute_sim(t1, t2)
+    if sim==None:
+      sim = 0
+    return jsonify(result = sim)
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -53,23 +65,20 @@ def faq():
 def temp():
     return render_template('index.html')
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
     topic = request.args.get('topic')
     text = None
     if topic:
       text = get_page(topic)
 
-    return render_template('main.html', topic = text)
-
-@app.route('/sim_score.html')
-def sim_score():
     t1 = request.args.get('t1')
     t2 = request.args.get('t2')
+    _sim = None
+    if t1!=None and t2!=None:
+      _sim = compute_sim(t1, t2)
 
-    sim = compute_sim(t1, t2)
-
-    return render_template('sim_score.html', sim=str(sim))
+    return render_template('main.html', topic = text, sim = str(_sim))
 
 if __name__ == "__main__":
     app.run()
