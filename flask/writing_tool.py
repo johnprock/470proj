@@ -51,8 +51,12 @@ def temp():
     return render_template('index.html')
 
 @app.route('/')
-def data_test():
-    return render_template('data_test.html')
+def index():
+    return render_template('main.html')
+
+@app.route('/main')
+def main():
+    return render_template('main.html')
 
 @app.route('/sim_score.html')
 def sim_score():

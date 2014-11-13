@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Writing Tool{% endblock %}
+{% block header %}Writing Tool{% endblock %}
+{% block content %}
+<!-- old shit
+<label for="topic1">Topic1:
+<input type="text" name="topic1" id="topic1" /></label>	
+
+<label for="topic2">Topic2:
+<input type="text" name="topic2" id="topic2" /></label>
+
+<button id="button" onclick="similarity()">Compute Similarity</button>	
+-->
+
+<b>Choose a topic</b>
+<input type="text" name="topic"/></label>
+<button id="button" onclick="similarity()">Get Topic</button>
+<div class="row">
+<div class="col-md-6">
+  <div class="mainbox">
+    Fetch things here
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="mainbox">
+    Edit things here
+  </div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">Tools</div>
+</div>
+<div class="row">
+<div class="col-md-12">Similarity shit</div>
+</div>
+
+{% endblock %}
+
