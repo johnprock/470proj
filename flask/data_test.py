@@ -34,15 +34,27 @@ def compute_sim(t1, t2): #takes two bodies of strings
         return 0 
     return dot_product/mag_product
 
-@app.route("/temp")
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+@app.route('/temp')
 def temp():
     return render_template('index.html')
 
-@app.route("/")
+@app.route('/')
 def data_test():
     return render_template('data_test.html')
 
-@app.route("/sim_score.html")
+@app.route('/sim_score.html')
 def sim_score():
     t1 = request.args.get('t1')
     t2 = request.args.get('t2')
