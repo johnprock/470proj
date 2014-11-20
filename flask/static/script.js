@@ -32,7 +32,7 @@ function update_chart(x, y) {
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: 'Similarity',
             innerSize: '50%',
             data: [
                 ['Wikipedia', x],
