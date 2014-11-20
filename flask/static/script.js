@@ -6,7 +6,7 @@ function update_chart(x, y) {
             plotShadow: false
         },
         title: {
-            text: 'Browser<br>shares',
+            text: 'Similarity<br>score',
             align: 'center',
             verticalAlign: 'middle',
             y: 50
