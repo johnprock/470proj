@@ -1,3 +1,4 @@
+
 function update_chart(x, y) {
     $('#chart').highcharts({
         chart: {
@@ -63,3 +64,4 @@ function fetch() {
 //    var topic = $("#topic").val();
 //    window.location.href = "/?topic="+topic;
 }
+

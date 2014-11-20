@@ -54,7 +54,8 @@ def fetch():
     t = request.args.get('t')
     text = ""
     if t!=None:
-        text = get_page(t)
+      text = get_page(t)
+    print "returning"
     return jsonify(result = text)
 
 @app.route('/about')

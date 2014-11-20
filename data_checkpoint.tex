@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+
+
+\title{Data Checkpoint}
+\author{Patrick Rock, Ben Sitz, Victoria McCloud}
+\date{November 6, 2014}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+For our data checkpoint, we pulled pages from wikipedia, extracted the summary paragraph, and implemented a page comparison
+function. We also created a basic flask app to embed our functionality into in preparation for the GUI checkpoint.
+
+\section{Wikipedia}
+We used the built in python wikipedia library. Getting a page is a simple as one function call! 
+
+\begin{verbatim}
+def get_page(t1):
+    t1_page = wikipedia.page(t1)
+    t1_content = [] 
+    t1_content = t1_page.content.split()
+    t1_final = []
+
+    x = 0
+    while t1_content[x] != '==':
+        t1_final.append(t1_content[x]) 
+        x+=1
+
+    return str(t1_final)
+\end{verbatim}
+
+\section{Similarity}
+We use the vector space model and cosine to compute the similarity between two wikipedia documents. 
+
+\begin{verbatim}
+def compute_sim(t1, t2): #takes two bodies of strings
+
+    c1 = Counter(t1.split())
+    c2 = Counter(t2.split())
+
+    terms = set(c1).union(c2)
+    dot_product = sum(c1.get(x, 0) * c2.get(x, 0) for x in terms)
+    magnitude1 = math.sqrt(sum(c1.get(x,0)**2 for x in terms))
+    magnitude2 = math.sqrt(sum(c2.get(x,0)**2 for x in terms))
+    mag_product = magnitude1*magnitude2
+    if mag_product == 0:
+        return 0 
+    return dot_product/mag_product
+\end{verbatim}
+
+\section{Flask}
+Flask is a python web microframework. We embedded out data functionality into a simple flask app for this checkpoint.
+
+\begin{verbatim}
+@app.route("/")
+def data_test():
+    return render_template('data_test.html')
+
+@app.route("/sim_score.html")
+def sim_score():
+    t1 = request.args.get('t1')
+    t2 = request.args.get('t2')
+
+    sim = compute_sim(t1, t2)
+
+    return render_template('sim_score.html', sim=str(sim))
+\end{verbatim}
+
+\end{document}
