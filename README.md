@@ -26,6 +26,7 @@ Current issues
 1. If the fetched page is not unique in wikipedia, it causes an error. 
 2. The similarity computation needs to be improved.
 3. The tools list needs to be seperated into a selector and a workspace.
+4. Add find replace tool?
 
 
 Author: Patrick Rock
