@@ -44,6 +44,12 @@ def compute_sim(t1, t2): #takes two bodies of strings
     return dot_product/mag_product
 
 ## ROUTING FUNCTIONS
+@app.route('/tool')
+def get_tool():
+    tool = request.args.get('tool')
+    f = tool + ".html"
+    return jsonify(result = render_template(f))
+
 @app.route('/synonym')
 def get_synonym():
     word = request.args.get('word')

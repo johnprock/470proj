@@ -48,6 +48,17 @@ function update_chart(x, y) {
 //      
 //}
 
+function load_tool(t) { 
+    var t = document.getElementById("tools").value;
+    $.getJSON('/tool', {
+      tool: t
+    }, function(data) {
+      document.getElementById("toolbox").innerHTML = data.result;
+    });
+    return false;
+    
+}
+
 function async_similarity() {
     $.getJSON('/similarity', {
       t1: $('#fetch').text(),
@@ -66,42 +77,5 @@ function fetch() {
       $("#edit").text(data.result);
     });
       return false;
-//    var topic = $("#topic").val();
-//    window.location.href = "/?topic="+topic;
-}
-
-function search_tool() {
-    document.getElementById("toolbox").innerHTML = "Paragraph changed!";
-}
-
-function anastrophe_tool() {
-}
-
-function synonym_tool() {
-}
-
-function merge_tool() {
-}
-
-function replace_tool() {
-}
-
-function switch_tool() {
-    var tool = document.getElementById("tools").value;
-    if(tool.localeCompare("search")) {
-        search_tool()
-    }
-    if(tool.localeCompare("anastrophe")) {
-        anastrophe_tool()
-    }
-    if(tool="synonym") {
-        synonym_tool()
-    }
-    if(tool="merge") {
-        merge_tool()
-    }
-    if(tool="replace") {
-        replace_tool()
-    }
 }
 
