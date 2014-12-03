@@ -32,15 +32,14 @@
 <div class="row" style="margin-top: 10px;">
 <div class="col-md-6">
     <label for="tools">Select a tool</label>
-    <select name="tools" id="tools">
-      <option>Sentence Search</option>
-      <option>Anastrophe</option>
-      <option selected="selected">Synonym</option>
-      <option>Sentence Merge</option>
-      <option>Find and Replace</option>
+    <select name="tools" id="tools" onload="switch_tool()" onchange="switch_tool()">
+      <option value="seach">Sentence Search
+      <option value="anastrophe">Anastrophe
+      <option value="synonym" selected="selected">Synonym
+      <option value="merge">Sentence Merge
+      <option value="replace">Find and Replace
     </select>
-  <div class="toolbox" id="toolspace">
-    toolspace fuck yes
+  <div class="toolbox" id="toolbox">
   </div>
 </div>
 <div class="col-md-6">
