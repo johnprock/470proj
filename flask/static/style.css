@@ -3,7 +3,17 @@
     border-radius: 25px; 
     margin-top: 20px;
     margin-bottom: 20px;
-    height: 150px;
+    height: 300px;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.toolbox{
+    border: 1px solid;
+    border-radius: 25px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 300px;
     overflow: scroll;
     padding: 10px;
 }

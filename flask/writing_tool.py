@@ -3,6 +3,8 @@ from flask import render_template
 from flask import request
 from flask import jsonify
 from collections import Counter
+from nltk.corpus import wordnet as wn # add this thing to requirements file...
+
 import wikipedia
 import math
 import unicodedata
@@ -23,6 +25,10 @@ def get_page(t1):
     t1_final = ' '.join(t1_final)
     return t1_final
 
+def synonym(word):
+	word = wn.synset('dog.n.01')
+	return word.hypernyms()
+
 def compute_sim(t1, t2): #takes two bodies of strings
 
     c1 = Counter(t1.split())
@@ -38,6 +44,11 @@ def compute_sim(t1, t2): #takes two bodies of strings
     return dot_product/mag_product
 
 ## ROUTING FUNCTIONS
+@app.route('/synonym')
+def get_synonym():
+    word = request.args.get('word')
+    return jsonify(result = synonym(word))
+
 @app.route('/similarity')
 def similarity():
     t1 = request.args.get('t1')

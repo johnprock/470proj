@@ -2,7 +2,7 @@
 {% block title %}Writing Tool{% endblock %}
 {% block header %}Writing Tool{% endblock %}
 {% block content %}
-<b>Choose a topic</b>
+<label for="topic">Choose a topic</label>
 <input type="text" id="topic"/>
 <button id="fetch_button" onclick="fetch()">Get Topic</button>
 
@@ -27,17 +27,25 @@
 </div>
 </div>
 
-<div class="row">
-<div class="col-md-12">
-  <div class="mainbox">
-    Tools
-  </div
+<hr class="star-light">
+
+<div class="row" style="margin-top: 10px;">
+<div class="col-md-6">
+    <label for="tools">Select a tool</label>
+    <select name="tools" id="tools">
+      <option>Sentence Search</option>
+      <option>Anastrophe</option>
+      <option selected="selected">Synonym</option>
+      <option>Sentence Merge</option>
+      <option>Find and Replace</option>
+    </select>
+  <div class="toolbox" id="toolspace">
+    toolspace fuck yes
+  </div>
 </div>
-</div>
-<div class="row">
-<div class="col-md-12">
+<div class="col-md-6">
     <button id="sim_button" onclick="async_similarity()">Compute Similarity</button>
-      <div id="chart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    <div id="chart" onload="async_similarity()" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 </div>
 </div>
 

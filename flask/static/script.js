@@ -43,6 +43,11 @@ function update_chart(x, y) {
     });
 }
 
+//function async_synonym() {
+//    $.getJSON('/synonym', {
+//      
+//}
+
 function async_similarity() {
     $.getJSON('/similarity', {
       t1: $('#fetch').text(),
