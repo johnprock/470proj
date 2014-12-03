@@ -1,7 +1,7 @@
 from nltk.corpus import wordnet as wn
 
 def synonym(word):
-	word_list = wn.synsets('small')
+	word_list = wn.synsets(word)
 	syns = []
 	size = len(word_list)
 	x = 0

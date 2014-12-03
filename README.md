@@ -9,7 +9,7 @@ content from wikipedia. The Summarizer 3000 is a tool that will make writing sho
 
 
 
-Core algoritgm
+Core algorithm
 --------
 The core algorithm is the similarity calculation. We compute the similarity
 between your changes and the original wikipedia document. When you've rewritten
