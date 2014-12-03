@@ -1,5 +1,17 @@
 from nltk.corpus import wordnet as wn
 
 def synonym(word):
-	word = wn.synset('dog.n.01')
-	return word.hypernyms()
+	word_list = wn.synsets('small')
+	syns = []
+	size = len(word_list)
+	x = 0
+	while x < size:
+		syn = word_list[x]
+		syn = str(syn)
+		syn = syn.split('.')[0]
+		syn = syn.split("'",1)[-1]
+		syns.append(syn)
+		x += 1
+	synonyms = set(syns)
+	synonyms = list(synonyms)
+	print synonyms
