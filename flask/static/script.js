@@ -43,10 +43,19 @@ function update_chart(x, y) {
     });
 }
 
-//function async_synonym() {
-//    $.getJSON('/synonym', {
-//      
-//}
+function synonym_tool() {
+    $.getJSON('/synonym', {
+      word: $("#syn_box").val()
+    }, function(data) {
+       var text = "";
+       for(i=0; i<data.result.length; i++)
+       {
+           text = text + '<option value=' + data.result[i] + '>' + data.result[i] + '</option>';
+       }
+       document.getElementById("selectable").innerHTML = text;
+     });
+    return false;
+}
 
 function load_tool(t) { 
     var t = document.getElementById("tools").value;
@@ -79,3 +88,16 @@ function fetch() {
       return false;
 }
 
+function find_replace(old_word, new_word) {
+    var text = $("#edit").text();
+    text = text.replace(old_word, new_word);
+    $("#edit").text(text);
+}
+
+function replace_syn() {
+   var old_word = $("#syn_box").val();
+   var new_word = $("#selectable").val()[0];
+   console.log(old_word);
+   console.log(new_word);
+   find_replace(old_word, new_word);
+}
