@@ -101,3 +101,13 @@ function replace_syn() {
    console.log(new_word);
    find_replace(old_word, new_word);
 }
+
+function merge_tool() {
+    $.getJSON('/merge', {
+      text: $('#edit').text()
+    }, function(data) {
+      $('#sim1').text(data.s1);
+      $('#sim2').text(data.s2);
+    });
+    return false;
+}

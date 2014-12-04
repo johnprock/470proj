@@ -17,13 +17,15 @@ def get_tool():
     f = tool + ".html"
     return jsonify(result = render_template(f))
 
+@app.route('/merge')
+def get_merge():
+    text = request.args.get('text')
+    s = top_sim_sentences(text)
+    return jsonify(s1 = s[0], s2 = s[1])
+
 @app.route('/synonym')
 def get_synonym():
-    word = str(request.args.get('word'))
-    print word
-    print "generating synonym"
-    print synonym(word)
-    print "synonym success"
+    word = request.args.get('word')
     return jsonify(result = synonym(word))
 
 @app.route('/similarity')
