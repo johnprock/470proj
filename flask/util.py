@@ -77,6 +77,22 @@ def compute_sim(t1, t2): #takes two bodies of strings
     return dot_product/mag_product
 
 
+def replace(text, old_word, new_word):
+	
+	tokens = []
+	tokens = text.split(' ')
+
+	x = 0
+	size = len(tokens)
+	while x < size:
+		if(old == tokens[x]):
+			tokens[x] = new
+		x += 1
+
+	text = ' '.join(tokens)
+	return text
+
+
 
 
 
