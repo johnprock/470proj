@@ -2,11 +2,12 @@ import wikipedia
 from collections import Counter
 import math
 import unicodedata
+import random
 
 from nltk.corpus import wordnet as wn # add this thing to requirements file...
 from nltk import pos_tag, word_tokenize
 
-def handle_disambiguate(topic):
+def disambiguate(topic):
     try:
         page = wikipedia.page(topic)
     except wikipedia.exceptions.DisambiguationError as e:
@@ -16,7 +17,7 @@ def handle_disambiguate(topic):
         
 
 def get_page(t1):
-    t1_page = wikipedia.page(t1)
+    t1_page = disambiguate(t1)
     t1_content = [] 
     t1_content = t1_page.content.split()
     t1_final = []
@@ -103,7 +104,7 @@ def replace(text, old_word, new_word):
 	return text
 
 def related_links(topic):
-	topic = wikipedia.page(topic)
+	topic = disambiguate(topic)
 	text_box1 = []
 	text_box1 = topic.content.split()
 	size = len(text_box1)
@@ -132,12 +133,19 @@ def related_links(topic):
 	return
 
 def search_similar(sentence, topic):
-    links = wikipedia.page(topic).links
+    links = disambiguate(topic).links
     top = [] 
+    rlinks = []
 
-    for link in links:
-        related_page = wikipedia.page(link)
-        related_sentences = related_page.content.split(".") 
+    
+    for i in range(0,10):
+        r = random.randint(0, len(links)-1)
+        rlinks.append(links[r])
+
+    for link in rlinks:
+        print "going to link: " + link
+        related_page = disambiguate(link)
+        related_sentences = related_page.summary.split(".") 
         related_sentences.remove(related_sentences[-1])
          
         sims = [(compute_sim(sentence, rs), rs) for rs in related_sentences]
