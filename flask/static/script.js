@@ -115,3 +115,13 @@ function merge_tool() {
     });
     return false;
 }
+
+function search_tool() {
+    $.getJSON('/search', {
+      text: $('#sentence').val(),
+      topic: $('#topic').val() 
+    }, function(data) {
+        $('#search_result').text(data.result);
+    });
+    return false;
+}

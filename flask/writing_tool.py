@@ -39,6 +39,14 @@ def similarity():
       sim = 0
     return jsonify(result = sim)
 
+@app.route('/search')
+def search():
+    s = request.args.get('text')
+    topic = request.args.get('topic')
+    print "finding similar"
+    f = search_similar(s, topic)
+    return jsonify(result = f)
+
 @app.route('/fetch')
 def fetch():
     t = request.args.get('t')
