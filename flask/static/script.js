@@ -124,3 +124,12 @@ function search_tool() {
     });
     return false;
 }
+
+function ana_tool() {
+    $.getJSON('/anastrophe', {
+      s: $('#ana_box').val()
+    }, function(data) {
+       $('#ana_result').text(data.result); 
+    });
+    return false;
+}

@@ -4,6 +4,7 @@ from flask import request
 from flask import jsonify
 from collections import Counter
 from util import *
+import util
 
 import math
 import unicodedata
@@ -47,6 +48,14 @@ def search():
     print "finding similar"
     f = search_similar(s, topic)
     return jsonify(result = f)
+
+@app.route('/anastrophe')
+def anastrophe():
+   sentence = request.args.get('s')
+   print "anastrophizing"
+   ana = util.anastrophe(sentence)
+   print "returning " + ana
+   return jsonify(result = ana) 
 
 @app.route('/fetch')
 def fetch():
