@@ -6,6 +6,15 @@ import unicodedata
 from nltk.corpus import wordnet as wn # add this thing to requirements file...
 from nltk import pos_tag, word_tokenize
 
+def handle_disambiguate(topic):
+    try:
+        page = wikipedia.page(topic)
+    except wikipedia.exceptions.DisambiguationError as e:
+        page = wikipedia.page(e.options[0])
+
+    return page
+        
+
 def get_page(t1):
     t1_page = wikipedia.page(t1)
     t1_content = [] 
@@ -121,6 +130,22 @@ def related_links(topic):
 		print related[x]
 		x += 1
 	return
+
+def search_similar(sentence, topic):
+    links = wikipedia.page(topic).links
+    top = [] 
+
+    for link in links:
+        related_page = wikipedia.page(link)
+        related_sentences = related_page.content.split(".") 
+        related_sentences.remove(related_sentences[-1])
+         
+        sims = [(compute_sim(sentence, rs), rs) for rs in related_sentences]
+        sort = sorted(sims, key=lambda tup: tup[0], reverse=True)
+        top.append(sort[0])
+
+    return sorted(top, key=lambda tup: tup[0], reverse=True)[0]
+        
 
 def anastrophe(sentence): 
 	pass
