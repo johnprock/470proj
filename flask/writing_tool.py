@@ -30,12 +30,13 @@ def get_synonym():
 
 @app.route('/similarity')
 def similarity():
-    t1 = request.args.get('t1')
-    t2 = request.args.get('t2')
+    fetch = request.args.get('fetch')
+    edit = request.args.get('edit')
     sim = None
-    if t1!=None and t2!=None:
-      sim = compute_sim(t1, t2)
+    if fetch!=None and edit!=None:
+      sim = compute_sim(fetch, edit)
     if sim==None:
+      print "sim calculation failed"
       sim = 0
     return jsonify(result = sim)
 

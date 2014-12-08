@@ -3,6 +3,7 @@ from collections import Counter
 import math
 import unicodedata
 import random
+import nltk
 
 from nltk.corpus import wordnet as wn # add this thing to requirements file...
 from nltk import pos_tag, word_tokenize
@@ -78,7 +79,7 @@ def compute_sim(t1, t2): #takes two bodies of strings
     c1 = Counter(t1.split())
     c2 = Counter(t2.split())
 
-    terms = set(c1).union(c2)
+    terms = set(c1)
     dot_product = sum(c1.get(x, 0) * c2.get(x, 0) for x in terms)
     magnitude1 = math.sqrt(sum(c1.get(x,0)**2 for x in terms))
     magnitude2 = math.sqrt(sum(c2.get(x,0)**2 for x in terms))
@@ -145,7 +146,7 @@ def search_similar(sentence, topic):
     for link in rlinks:
         print "going to link: " + link
         related_page = disambiguate(link)
-        related_sentences = related_page.summary.split(".") 
+        related_sentences = related_page.content.split(".") 
         related_sentences.remove(related_sentences[-1])
          
         sims = [(compute_sim(sentence, rs), rs) for rs in related_sentences]
@@ -155,8 +156,46 @@ def search_similar(sentence, topic):
     return sorted(top, key=lambda tup: tup[0], reverse=True)[0]
         
 
-def anastrophe(sentence): 
-	pass
+def anastrophe(sentence):
+ 
+        text = word_tokenize(sentence)
+        tup = nltk.pos_tag(text)
+ 
+        #text = "The dog was fury"
+        #tup = [("The", "DT"), ("dog", "NN"), ("was", "VB"), ("fury", "JJ")] #fury the dog was
+       
+        words = []
+        parts = []
+        anastrophe = []
+        size = len(tup)
+        x = 0
+        while x < size:
+                words.append(tup[x][0])
+                x += 1
+ 
+        x = 0
+        while x < size:
+                parts.append(tup[x][1])
+                x +=1
+ 
+ 
+        x = 0
+        while x < size:
+                if parts[x] == "JJ":
+                        anastrophe.append(words[x])
+                        parts.remove(parts[x])
+                        words.remove(words[x])
+                        break
+                x += 1
+ 
+        x = 0
+        size = len(words)
+        while x < size:
+                anastrophe.append(words[x])
+                x +=1
+ 
+        final_anastrophe = ' '.join(anastrophe)
+        return final_anastrophe
 
 
 

@@ -70,8 +70,8 @@ function load_tool(t) {
 
 function async_similarity() {
     $.getJSON('/similarity', {
-      t1: $('#fetch').text(),
-      t2: $('#edit').text()
+      fetch: $('#fetch').text(),
+      edit: $('#edit').text()
     }, function(data) {
       update_chart(data.result, 1-data.result);
     });
@@ -83,7 +83,6 @@ function fetch() {
       t: $('#topic').val(),
     }, function(data) {
       $("#fetch").text(data.result);
-      $("#edit").text(data.result);
     });
       return false;
 }
