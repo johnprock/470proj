@@ -156,14 +156,12 @@ def search_similar(sentence, topic):
     return sorted(top, key=lambda tup: tup[0], reverse=True)[0]
         
 
+ 
 def anastrophe(sentence):
  
         text = word_tokenize(sentence)
         tup = nltk.pos_tag(text)
  
-        #text = "The dog was fury"
-        #tup = [("The", "DT"), ("dog", "NN"), ("was", "VB"), ("fury", "JJ")] #fury the dog was
-       
         words = []
         parts = []
         anastrophe = []
@@ -172,7 +170,6 @@ def anastrophe(sentence):
         while x < size:
                 words.append(tup[x][0])
                 x += 1
- 
         x = 0
         while x < size:
                 parts.append(tup[x][1])
@@ -181,12 +178,21 @@ def anastrophe(sentence):
  
         x = 0
         while x < size:
-                if parts[x] == "JJ":
-                        anastrophe.append(words[x])
-                        parts.remove(parts[x])
-                        words.remove(words[x])
+                if parts[x] == "VB":
+                        j = x +1
+                        while j < size:
+                                anastrophe.append(words[j])
+                                j+=1
                         break
+                       
                 x += 1
+ 
+        x = 0
+        size = len(anastrophe)
+        while x < size:
+                words.remove(anastrophe[x])
+                x += 1
+ 
  
         x = 0
         size = len(words)
@@ -196,11 +202,4 @@ def anastrophe(sentence):
  
         final_anastrophe = ' '.join(anastrophe)
         return final_anastrophe
-
-
-
-
-
-
-
 
