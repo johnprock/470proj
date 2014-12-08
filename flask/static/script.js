@@ -102,6 +102,10 @@ function replace_syn() {
    find_replace(old_word, new_word);
 }
 
+function replace_tool() {
+    find_replace( $("#oldreplace_box").val(), $("#newreplace_box").val());
+}
+
 function merge_tool() {
     $.getJSON('/merge', {
       text: $('#edit').text()
