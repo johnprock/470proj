@@ -4,6 +4,7 @@ import math
 import unicodedata
 
 from nltk.corpus import wordnet as wn # add this thing to requirements file...
+from nltk import pos_tag, word_tokenize
 
 def get_page(t1):
     t1_page = wikipedia.page(t1)
@@ -91,6 +92,38 @@ def replace(text, old_word, new_word):
 
 	text = ' '.join(tokens)
 	return text
+
+def related_links(topic):
+	topic = wikipedia.page(topic)
+	text_box1 = []
+	text_box1 = topic.content.split()
+	size = len(text_box1)
+	related = []
+	x = 0
+
+	while x < size:
+		if text_box1[x] == "also" and text_box1[x+1] == "==":
+			x = x +2
+			j = x
+			while j < size:
+				if text_box1[j] == "==":
+					break
+				related.append(text_box1[j])
+				j += 1
+		x += 1
+
+	if not related:
+		print 'none'
+		return 
+	size = len(related)
+	x = 0
+	while x < size:
+		print related[x]
+		x += 1
+	return
+
+def anastrophe(sentence): 
+	pass
 
 
 
