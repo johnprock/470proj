@@ -12,7 +12,13 @@ Core algorithm
 --------
 The core algorithm is the similarity calculation. We compute the similarity
 between your changes and the original wikipedia document. When you've rewritten
-the content in your own words, the similarity score will reflect that.
+the content in your own words, the similarity score will reflect that. We also provide a tool suite to help 
+transfrom the edit document.
+* Sentence Search: Finds a related sentence by tranversing wikipedia's link structure
+* Sentence Merge: Computes the two most similar sentences in your document. These could potentially be combined. 
+* Anastrophe: Attempts to automatically reorded the clauses of your sentence.
+* Synonym: Uses nltk to find synonyms.
+* Find and Replace: Simple find and replace tool.
 
 
 How to run it
